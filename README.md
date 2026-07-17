@@ -171,56 +171,11 @@ Daily Time Series
 Các bước làm sạch dữ liệu:
 
 ## Xử lý định dạng thời gian
-
-- Chuẩn hóa dữ liệu ngày tháng.
-- Xử lý các định dạng thời gian phức tạp:
-
-```
-Julian Date
-(Google Earth Engine)
-```
-
----
-
 ## Chuẩn hóa dữ liệu
-
-- Chuẩn hóa tên quốc gia.
-- Loại bỏ các bản ghi trùng lặp.
-
----
-
 # 3. Missing Data Handling
 
 ## Fire Features
-
-Đối với dữ liệu cháy:
-
-Áp dụng:
-
-```
-Fill missing value = 0
-```
-
-Ý nghĩa:
-
-Không có dữ liệu vệ tinh phát hiện cháy → Không xảy ra cháy.
-
----
-
 ## Environmental Features
-
-Đối với biến môi trường:
-
-Áp dụng:
-
-```
-Forward Fill
-```
-
-nhằm duy trì tính liên tục của chuỗi thời gian khí tượng.
-
----
-
 # 4. Outlier Handling
 
 Xử lý giá trị ngoại lai bằng:
@@ -243,74 +198,12 @@ Tuy nhiên:
 # 5. Feature Engineering
 
 ## Fire Level Classification
-
-Chuyển đổi mức độ cháy thành 4 lớp:
-
-```
-0 - No Fire
-1 - Low Fire
-2 - Medium Fire
-3 - High Fire
-```
-
----
-
 ## NDVI Classification
-
-Phân loại trạng thái sinh thái:
-
-- Vegetation thấp.
-- Vegetation trung bình.
-- Vegetation cao.
-
----
-
 ## Label Encoding
-
-Mã hóa các biến dạng danh mục:
-
-```
-Categorical Features
-        ↓
-Label Encoding
-```
-
----
-
 ## Temporal Feature Extraction
-
-Trích xuất thông tin thời gian:
-
-- Năm.
-- Tháng.
-- Ngày.
-
-Giúp mô hình học được:
-
-- Tính mùa vụ.
-- Chu kỳ khí hậu.
-
----
-
 ## Feature Scaling
-
-Áp dụng hai phương pháp chuẩn hóa:
-
 ### Min-Max Scaling
-
-Sử dụng cho:
-
-- Nhóm biến hỏa hoạn.
-
----
-
 ### Standardization (Z-score)
-
-Sử dụng cho:
-
-- Nhóm biến môi trường.
-
----
 
 # 6. Dimensionality Reduction
 
@@ -401,63 +294,3 @@ Mô hình đạt khả năng nhận diện tốt:
 
 ---
 
-# 💻 Ứng dụng Website
-
-Hệ thống cung cấp giao diện dự báo trực quan bằng:
-
-```
-Streamlit / Flask
-```
-
-Người dùng có thể:
-
----
-
-## 1. Chọn thông tin dự báo
-
-- Quốc gia.
-- Ngày dự báo.
-
----
-
-## 2. Nhập thông số môi trường
-
-Bao gồm:
-
-- Nhiệt độ.
-- Độ ẩm.
-- Lượng mưa.
-- Các thông số khí tượng khác.
-
----
-
-## 3. Nhận kết quả cảnh báo
-
-Hệ thống trả về mức độ nguy cơ cháy:
-
-| Mức độ | Màu cảnh báo |
-|---|---|
-| Không cháy | 🟢 Xanh |
-| Thấp | 🟡 Vàng |
-| Trung bình | 🟠 Cam |
-| Cao | 🔴 Đỏ |
-
----
-
-# 🚀 Future Improvements
-
-Một số hướng phát triển:
-
-- Bổ sung dữ liệu vệ tinh thời gian thực.
-- Kết hợp dữ liệu không gian (Spatial Data).
-- Áp dụng Deep Learning cho dữ liệu chuỗi thời gian.
-- Xây dựng bản đồ nguy cơ cháy rừng theo khu vực.
-- Phát triển hệ thống cảnh báo sớm.
-- Triển khai API dự báo phục vụ thực tế.
-
----
-
-
-GitHub:
-
-https://github.com/maihwng
