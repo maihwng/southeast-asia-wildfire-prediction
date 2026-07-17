@@ -1,0 +1,62 @@
+import pandas as pd
+import glob
+import os
+
+sea_keywords = [
+    'Viet', 'Thailand', 'Indonesia', 'Malaysia', 'Philippines', 
+    'Lao', 'Cambodia', 'Myanmar', 'Brunei', 'Singapore', 'Timor'
+]
+
+df_list = []
+# Quét đệ quy toàn bộ thư mục Dataset
+all_files = glob.glob(r"C:\BTL_DataPre\Dataset\**\*.csv", recursive=True)
+
+for file in all_files:
+    file_name = os.path.basename(file)
+    if any(keyword in file_name for keyword in sea_keywords):
+        parts = file_name.replace('.csv', '').split('_')
+        raw_country_name = '_'.join(parts[2:]) 
+        
+        temp_df = pd.read_csv(file)
+        if not temp_df.empty:
+            temp_df['Country_NASA'] = raw_country_name
+            df_list.append(temp_df)
+
+if len(df_list) > 0:
+    df_firms_raw = pd.concat(df_list, ignore_index=True)
+    df_firms_raw['date'] = pd.to_datetime(df_firms_raw['acq_date'])
+
+    # GOM NHÓM: Bỏ qua hoàn toàn vệ tinh và cảm biến, chỉ lấy số liệu toán học!
+    df_nasa_daily = df_firms_raw.groupby(['Country_NASA', 'date']).agg(
+        fire_count=('latitude', 'count'),
+        mean_frp=('frp', 'mean'),
+        max_frp=('frp', 'max'),
+        mean_bright_ti4=('bright_ti4', 'mean'),
+        mean_bright_ti5=('bright_ti5', 'mean')
+    ).reset_index()
+
+    # Đồng bộ tên quốc gia chuẩn
+    mapping_dict = {
+        'Viet_Nam': 'Viet Nam',
+        'Vietnam': 'Viet Nam',
+        'Lao_Peoples_Democratic_Republic': "Lao People's Democratic Republic", 
+        'Lao': "Lao People's Democratic Republic",
+        'Brunei_Darussalam': 'Brunei Darussalam',
+        'Brunei': 'Brunei Darussalam',
+        'Timor_Leste': 'Timor-Leste'
+    }
+    df_nasa_daily['ADM0_NAME'] = df_nasa_daily['Country_NASA'].replace(mapping_dict)
+
+    # Sắp xếp lại cột cho chuyên nghiệp
+    final_columns = [
+        'ADM0_NAME', 'date', 'fire_count', 'mean_frp', 'max_frp', 
+        'mean_bright_ti4', 'mean_bright_ti5'
+    ]
+    df_final_nasa = df_nasa_daily[final_columns]
+
+    # Xuất file thẳng ra thư mục làm việc hiện tại
+    df_final_nasa.to_csv('NASA_FIRMS_SEA_Daily.csv', index=False)
+    
+    print(f"Xuất file NASA_FIRMS_SEA_Daily.csv thành công! Đã loại bỏ hoàn toàn các cột nhiễu.")
+else:
+    print("Không tìm thấy file CSV nào! Kiểm tra lại đường dẫn.")

@@ -1,0 +1,107 @@
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    /* Nền cam nhẹ ban đầu */
+    background-color: #fff3e0; 
+    color: #ffffff;
+    margin: 0; 
+    padding-top: 100px; /* Đẩy xuống tránh bị Header che */
+
+    /* BỔ SUNG: Ảnh nền được phủ bởi lớp màu trắng nhạt (0.3) nhưng vẫn thấy ảnh */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), 
+                      url("/static/Palisades-wildfire-Janaury-2025.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+/* --- HEADER --- */
+.navbar {
+    width: 100%; 
+    /* Headline cam đậm hơn */
+    background-color: #e65100; 
+    padding: 15px 40px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    box-sizing: border-box; 
+    z-index: 1000;
+}
+.nav-brand { font-size: 22px; font-weight: bold; color: #ffffff; letter-spacing: 1px; }
+.nav-menu { color: #ffe0b2; font-size: 14px; }
+.nav-menu span { margin: 0 10px; }
+
+/* --- BỐ CỤC CHÍNH --- */
+.main-container { display: flex; justify-content: center; gap: 40px; width: 100%; }
+
+/* --- PANEL: TRẠM KHÍ TƯỢNG & CẢNH BÁO --- */
+.panel {
+    /* ĐỔI THEO YÊU CẦU: Nền màu cam siêu nhạt */
+    background-color: #fff5e6; 
+    
+    padding: 30px; 
+    border-radius: 12px;
+    width: 400px; 
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    /* Viền màu cam nhạt để đồng bộ */
+    border: 1px solid #ffe0b2; 
+    
+    /* Xóa bỏ backdrop-filter để màu cam hiện rõ không bị hiệu ứng kính đè */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+h2 { text-align: center; color: #bf360c; margin-top: 0; }
+
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #5d4037; }
+
+/* Input giữ nguyên kích thước, đổi nền trắng để nổi trên nền cam nhạt */
+.input-group input, .input-group select {
+    width: 100%; 
+    padding: 10px; 
+    border-radius: 6px; 
+    border: 1px solid #ffccbc;
+    background: #ffffff; 
+    color: #333; 
+    font-size: 16px; 
+    box-sizing: border-box;
+}
+
+/* --- BUTTONS GIỮ NGUYÊN KÍCH THƯỚC --- */
+button {
+    width: 100%; padding: 12px; border: none; border-radius: 6px;
+    font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s;
+}
+button:hover { transform: scale(1.02); }
+.btn-api { background: #2c3e50; color: #3498db; border: 1px solid #3498db; }
+.btn-api:hover { background: #3498db; color: white; }
+
+.btn-predict { 
+    background: linear-gradient(90deg, #e65100 0%, #ff8f00 100%); 
+    color: white; 
+    margin-top: 10px;
+}
+
+.welcome-text { text-align:center; color:#5d4037; margin-top:50px; font-weight: 500; }
+.loader { text-align: center; color: #d84315; font-weight: bold; margin-top: 20px;}
+
+.result-card { margin-top: 20px; padding: 25px; border-radius: 10px; text-align: center; }
+.level-text { font-size: 26px; font-weight: 900; margin-bottom: 10px; }
+.estimate-text { font-size: 16px; opacity: 0.9; }
+
+/* Giữ nguyên các màu cấp độ */
+.bg-cap0 { background-color: #27ae60 !important; color: white; }
+.bg-cap1 { background-color: #f1c40f !important; color: black; }
+.bg-cap2 { background-color: #e67e22 !important; color: white; }
+.bg-cap3 { 
+    background-color: #c0392b !important; 
+    color: white; 
+    border: 3px solid #ff4757; 
+    animation: pulse 1.5s infinite; 
+}
+
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
