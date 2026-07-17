@@ -168,14 +168,14 @@ Daily Time Series
 
 # 2. Data Cleaning & Standardization
 
-Các bước làm sạch dữ liệu:
+## Các bước làm sạch dữ liệu:
 
-## Xử lý định dạng thời gian
-## Chuẩn hóa dữ liệu
+ Xử lý định dạng thời gian
+Chuẩn hóa dữ liệu
 # 3. Missing Data Handling
 
-## Fire Features
-## Environmental Features
+Fire Features
+Environmental Features
 # 4. Outlier Handling
 
 Xử lý giá trị ngoại lai bằng:
@@ -197,13 +197,13 @@ Tuy nhiên:
 
 # 5. Feature Engineering
 
-## Fire Level Classification
-## NDVI Classification
-## Label Encoding
-## Temporal Feature Extraction
-## Feature Scaling
-### Min-Max Scaling
-### Standardization (Z-score)
+Fire Level Classification
+NDVI Classification
+Label Encoding
+Temporal Feature Extraction
+Feature Scaling
+Min-Max Scaling
+Standardization (Z-score)
 
 # 6. Dimensionality Reduction
 
